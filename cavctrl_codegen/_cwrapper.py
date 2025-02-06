@@ -56,13 +56,17 @@ class c_api(object):
         # Get full file path
         if libraryname == '': # If no filename provided in construction
             # Assume api_so is the shared library name with .dll or .so extension
-            if os.name == 'nt':
+            if os.name == 'nt': # Windows
                 filename = 'cav_so'
                 fileext = '.dll'
             
-            elif os.name == 'posix':
+            elif os.name == 'posix': # Linux
                 filename = 'libcav_so'
                 fileext = '.so'
+
+            elif os.name == 'darwin': # Mac
+                filename = 'libcav_so'
+                fileext = '.dylib'
             
             else:
                 raise ValueError('cwrapper class cannot determine system type!')
@@ -76,6 +80,9 @@ class c_api(object):
             elif os.name == 'posix':
                 fileext = '.so'
 
+            elif os.name == 'darwin':
+                fileext = '.dylib'
+            
             else:
                 raise ValueError('cwrapper class cannot determine system type!')
             

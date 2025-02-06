@@ -124,12 +124,18 @@ class cpp_api(object):
         # Get full file path
         if libraryname == '': # If no filename provided in construction
             # Assume api_so is the shared library name with .dll or .so extension
-            filename = 'pcc_so'
-
-            if os.name == 'nt':
+            if os.name == 'nt': # Windows
+                filename = 'pcc_so'
                 fileext = '.dll'
-            elif os.name == 'posix':
+
+            elif os.name == 'posix': # Linux
+                filename = 'libpcc_so'
                 fileext = '.so'
+
+            elif os.name == 'darwin': # Mac
+                filename = 'libpcc_so'
+                fileext = '.dylib'
+
             else:
                 raise ValueError('cwrapper class cannot determine system type!')
             
@@ -138,8 +144,13 @@ class cpp_api(object):
         elif ext == '': # Filename provided but no extension
             if os.name == 'nt':
                 fileext = '.dll'
+
             elif os.name == 'posix':
                 fileext = '.so'
+
+            elif os.name == 'darwin':
+                fileext = '.dylib'
+                
             else:
                 raise ValueError('cwrapper class cannot determine system type!')
             
