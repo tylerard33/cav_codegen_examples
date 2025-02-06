@@ -1,0 +1,7 @@
+# ignore ALL .x files
+*.log
+*.csv
+
+# ignore ALL files in ANY directory named x
+build/
+lib/
