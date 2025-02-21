@@ -1,7 +1,7 @@
 
 # Check filename
 FILE=libpcc_so.so
-DEST=~/Documents/dev/Python/SUMO/I24scenario
+DEST=~/Documents/dev/Python/cav_sumo/
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "Linux GNU detected."
